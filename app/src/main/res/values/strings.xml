@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">FoodTracker</string>
+    <string name="sign_in">Sign In</string>
+    <string name="register">Register</string>
+    <string name="sign_in_google">Sign In With Google</string>
+    <string name="email">E-mail address:</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="display_name">Display name</string>
+    <string name="favorite_food">Favorite Food</string>
+    <string name="next">Next</string>
 </resources>

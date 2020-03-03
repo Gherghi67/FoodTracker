@@ -4,31 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".RegisterActivity">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
         android:textSize="60sp"
         android:layout_centerHorizontal="true"/>
-    <Button
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/sign_in_button"
-        android:text="@string/sign_in"
+        android:hint="@string/email"
+        android:id="@+id/email"
         android:layout_centerInParent="true"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/password"
+        android:hint="@string/password"
+        android:layout_below="@+id/email"
+        android:layout_centerHorizontal="true"
+        android:inputType="textPassword"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/confirm_password"
+        android:hint="@string/confirm_password"
+        android:layout_below="@+id/password"
+        android:layout_centerHorizontal="true"
+        android:inputType="textPassword"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/register_button"
         android:text="@string/register"
-        android:layout_below="@+id/sign_in_button"
-        android:layout_centerHorizontal="true"/>
-    <com.google.android.gms.common.SignInButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/sign_in_google"
-        android:text="@string/sign_in_google"
-        android:layout_below="@+id/register_button"
+        android:layout_below="@+id/confirm_password"
         android:layout_centerHorizontal="true"/>
 </RelativeLayout>
