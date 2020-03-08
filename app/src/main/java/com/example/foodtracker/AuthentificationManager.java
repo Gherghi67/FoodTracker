@@ -79,4 +79,18 @@ public class AuthentificationManager {
             Log.w(TAG, "password trebuie sa coincida cu confirmPassword");
         }
     }
+
+    public void signInUser(String email, String password) {
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()) {
+                    Log.d(TAG, "signInWithEmail : success");
+                }
+                else {
+                    Log.w(TAG, "signInWithEmail : failure", task.getException());
+                }
+            }
+        });
+    }
 }
