@@ -55,7 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
-                                //FirebaseUser user = firebaseAuth.getCurrentUser();
+                                User.setCurrentUser(firebaseAuth.getCurrentUser());
                                 Intent intent = new Intent(getApplicationContext(), UserDetailsActivity.class);
                                 startActivity(intent);
                             }

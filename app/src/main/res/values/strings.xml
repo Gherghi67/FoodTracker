@@ -9,4 +9,6 @@
     <string name="display_name">Display name</string>
     <string name="favorite_food">Favorite Food</string>
     <string name="next">Next</string>
+    <string name="upload">Upload</string>
+    <string name="finish">Finish registration</string>
 </resources>
