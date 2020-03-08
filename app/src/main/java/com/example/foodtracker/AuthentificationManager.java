@@ -55,28 +55,26 @@ public class AuthentificationManager {
     }
 
     public static AuthentificationManager getInstance() {
-        if(singleInstance == null) {
+        if (singleInstance == null) {
             singleInstance = new AuthentificationManager();
         }
         return singleInstance;
     }
 
     public void registerNewUser(String email, String displayName, String password, String confirmPassword, String favoriteFood) {
-        if(password.equals(confirmPassword)) {
+        if (password.equals(confirmPassword)) {
             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()) {
+                    if (task.isSuccessful()) {
                         Log.d(TAG, "createUserWithEmail : success");
-                    }
-                    else {
+                    } else {
                         Log.w(TAG, "createUserWithEmail : failure", task.getException());
                     }
                 }
             });
             addUserToDatabase(email, displayName, favoriteFood);
-        }
-        else {
+        } else {
             Log.w(TAG, "password trebuie sa coincida cu confirmPassword");
         }
     }
@@ -85,10 +83,9 @@ public class AuthentificationManager {
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()) {
+                if (task.isSuccessful()) {
                     Log.d(TAG, "signInWithEmail : success");
-                }
-                else {
+                } else {
                     Log.w(TAG, "signInWithEmail : failure", task.getException());
                 }
             }
