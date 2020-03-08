@@ -93,4 +93,8 @@ public class AuthentificationManager {
             }
         });
     }
+
+    public void signOutUser() {
+        firebaseAuth.signOut();
+    }
 }
