@@ -39,7 +39,7 @@ public class AuthentificationManager {
     }
 
 
-    private void addUserToDatabase(String email, String displayName, String favoriteFood) {
+    private void addUserToDatabase(String id, String email, String displayName, String favoriteFood) {
         FirebaseFirestore database = FirebaseFirestore.getInstance();
 
         Map<String, String> user = new HashMap<>();
@@ -47,7 +47,9 @@ public class AuthentificationManager {
         user.put("displayName", displayName);
         user.put("favoriteFood", favoriteFood);
 
-        database.collection("users")
+        database.collection("users").document(id).set(user);
+
+        /*database.collection("users")
                 .add(user)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
@@ -60,7 +62,7 @@ public class AuthentificationManager {
                     public void onFailure(@NonNull Exception e) {
                         Log.w(TAG, "Error adding document", e);
                     }
-                });
+                }); */
     }
 
 
@@ -77,7 +79,7 @@ public class AuthentificationManager {
                     }
                 }
             });
-            addUserToDatabase(email, displayName, favoriteFood);
+            addUserToDatabase(this.getCurrentUser().getUid(), email, displayName, favoriteFood);
         } else {
             Log.w(TAG, "password trebuie sa coincida cu confirmPassword");
         }
