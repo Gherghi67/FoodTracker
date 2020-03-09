@@ -30,6 +30,15 @@ public class AuthentificationManager {
         firebaseAuth = FirebaseAuth.getInstance();
     }
 
+
+    public static AuthentificationManager getInstance() {
+        if (singleInstance == null) {
+            singleInstance = new AuthentificationManager();
+        }
+        return singleInstance;
+    }
+
+
     private void addUserToDatabase(String email, String displayName, String favoriteFood) {
         FirebaseFirestore database = FirebaseFirestore.getInstance();
 
@@ -54,12 +63,7 @@ public class AuthentificationManager {
                 });
     }
 
-    public static AuthentificationManager getInstance() {
-        if (singleInstance == null) {
-            singleInstance = new AuthentificationManager();
-        }
-        return singleInstance;
-    }
+
 
     public void registerNewUser(String email, String displayName, String password, String confirmPassword, String favoriteFood) {
         if (password.equals(confirmPassword)) {
