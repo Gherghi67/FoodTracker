@@ -31,12 +31,6 @@ public class AuthentificationManager {
     }
 
 
-    public static AuthentificationManager getInstance() {
-        if (singleInstance == null) {
-            singleInstance = new AuthentificationManager();
-        }
-        return singleInstance;
-    }
 
 
     private void addUserToDatabase(String id, String email, String displayName, String favoriteFood) {
@@ -63,6 +57,14 @@ public class AuthentificationManager {
                         Log.w(TAG, "Error adding document", e);
                     }
                 }); */
+    }
+
+
+    public static AuthentificationManager getInstance() {
+        if (singleInstance == null) {
+            singleInstance = new AuthentificationManager();
+        }
+        return singleInstance;
     }
 
 

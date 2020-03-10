@@ -14,83 +14,45 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class User {
-    private static FirebaseUser currentUser;
+    private String displayName;
+    private String email;
+    private String favoriteFood;
 
-    private static String favoriteFood;
+    public User() {
 
-
-    //method where we call the updateProfile() method of FirebaseUser class
-
-    private static void updateProfile(UserProfileChangeRequest profileChangeRequest){
-        currentUser.updateProfile(profileChangeRequest)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Log.d("da", "User profile updated!");
-                        }
-                    }
-                });
     }
 
-    public static void setCurrentUser(FirebaseUser user){
-        currentUser = user;
+    public User(String displayName, String email, String favoriteFood) {
+        this.displayName = displayName;
+        this.email = email;
+        this.favoriteFood = favoriteFood;
     }
 
-
-    public static boolean isNull(){
-        return currentUser == null;
+    public String getDisplayName() {
+        return displayName;
     }
 
-
-    public static String getUid(){
-        return currentUser.getUid();
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
-
-    public static String getDisplayName(){
-        return currentUser.getDisplayName();
+    public String getEmail() {
+        return email;
     }
 
-    public static Uri getPhotoUrl(){
-        return currentUser.getPhotoUrl();
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public static String getFavoriteFood(){
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(
-                "users/" + currentUser.getUid() + "/favoriteFood"
-        );
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                favoriteFood = dataSnapshot.getValue(String.class);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+    public String getFavoriteFood() {
         return favoriteFood;
     }
 
-    public static void setDisplayName(String displayName){
-        UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
-                .setDisplayName(displayName).build();
-        updateProfile(profileChangeRequest);
+    public void setFavoriteFood(String favoriteFood) {
+        this.favoriteFood = favoriteFood;
     }
-
-    public static void setPhotoUrl(String photoUrl){
-        UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
-                .setPhotoUri(Uri.parse(photoUrl)).build();
-        updateProfile(profileChangeRequest);
-    }
-
-    public static void setFavoriteFood(String food){
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("users").child(currentUser.getUid()).child("favoriteFood").setValue(food);
-    }
-
 }
